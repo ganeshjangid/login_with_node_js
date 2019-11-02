@@ -10,18 +10,18 @@
             <p class="lead">Login With node Js</p>
             <hr class="my-4">
 
-            <% if(errorMsg.length > 0) %>
+            <% if(errorMsg.length > 0){ %>
             <div class="alert alert-dismissible alert-danger">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <strong><%= errorMsg %></strong> 
+                <strong><%= errorMsg %></strong>
             </div>
             <% } %>
-            <form method="POST" action="/" >
+            <form method="POST" action="/Login">
                 <fieldset>
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                            placeholder="Enter email">
+                            placeholder="Enter email" value="<%= outputError.email %>">
                         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small>
                     </div>
@@ -30,7 +30,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
 
-
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </fieldset>
             </form>

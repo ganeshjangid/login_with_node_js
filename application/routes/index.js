@@ -27,4 +27,12 @@ route.post('/register',[
 
 ], authCont.postRegister);
 
+
+route.post("/Login",
+body('email')
+.trim().not().isEmpty().withMessage('Please Enter Email id').isEmail().withMessage('Please Enter Valid Email id'),
+body('password')
+.trim().not().isEmpty().withMessage('Please Enter Password')
+, authCont.postLogin);
+
 module.exports=route;

@@ -1,5 +1,8 @@
 const Sequelize = require('sequelize');
 const db=require('../config/db');
+const bcrypt=require('bcryptjs');
+
+const passport=require('../services/passport');
 
 const User = db.define('users', {
     // attributes
@@ -23,4 +26,27 @@ const User = db.define('users', {
     }
 });
 
-module.exports=User;
+const insertRecords=async (data)=>{
+
+    //console.log(data);
+    return User.create(data);
+};
+
+const chkEmail=async (email)=>{
+
+    return User.findOne({
+        where:{
+            email:email
+        }
+    });
+};
+
+
+module.exports={
+    insertRecords: insertRecords,
+    chkEmail: chkEmail,
+    User: User
+
+}
+
+
